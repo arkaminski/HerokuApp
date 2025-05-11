@@ -24,6 +24,7 @@ public class DynamicControlesTest {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     @Test
@@ -44,7 +45,6 @@ public class DynamicControlesTest {
     public void checkDynamicControls() {
         driver.get("https://the-internet.herokuapp.com/dynamic_controls");
         driver.findElement(By.xpath("//*[text()='Remove']")).click();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("message")));
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("checkbox")));
     }
@@ -54,7 +54,6 @@ public class DynamicControlesTest {
         driver.get("https://the-internet.herokuapp.com/dynamic_controls");
         Assert.assertFalse (driver.findElement(By.xpath( "//input[@type='text']")).isEnabled());
         driver.findElement(By.xpath("//*[text()='Enable']")).click();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("message")));
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("It's enabled")));
     }
