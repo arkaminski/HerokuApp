@@ -34,7 +34,7 @@ public class DynamicControlesTest {
         actions.contextClick(contextMenu).perform();
         Alert alert = driver.switchTo().alert();
         String alertText = alert.getText();
-        Assert.assertEquals(alertText,
+        assertEquals(alertText,
                 "You selected a context menu",
                 "Текст не совпадает с ожидаемым");
         alert.accept();
@@ -48,6 +48,7 @@ public class DynamicControlesTest {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("message")));
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("checkbox")));
     }
+    
     @Test
     public void checkDynamicControlsEnabled(){
         driver.get("https://the-internet.herokuapp.com/dynamic_controls");
